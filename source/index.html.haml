@@ -1,7 +1,17 @@
 - content_for :head do
-  %title The Middleman!
-
-%h1 The Middleman is watching.
+  %title FunctioSheet
 
 - content_for :script do
   = javascript_include_tag "application"
+
+  :coffeescript
+    collection = new Functio.Models.Table [
+      {name: "Tim", age: 5}
+      {name: "Ida", age: 26}
+      {name: "Rob", age: 55}
+    ]
+
+    table = new Functio.Views.Table
+      collection: collection
+
+    table.render().$el.appendTo '#main'
