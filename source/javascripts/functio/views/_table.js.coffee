@@ -11,10 +11,6 @@ namespace "Functio.Views", (Views) ->
 
       @headerFields = null
 
-      @functioFields =
-        dog_age: ->
-          @age * 7
-
     render: =>
       # TODO: Update this to use per row view caching
       @el.empty()
@@ -30,9 +26,6 @@ namespace "Functio.Views", (Views) ->
         @headerFields.each (field) ->
           tableRow.append $ '<td>', text: attributes[field]
 
-        for key, fn of @functioFields
-          tableRow.append $ '<td>', text: fn.call(attributes)
-
         tbody.append tableRow
 
       if @headerFields
@@ -47,9 +40,6 @@ namespace "Functio.Views", (Views) ->
 
         @headerFields.each (field) ->
           headerRow.append $ '<th>', text: field
-
-        for key, fn of @functioFields
-          headerRow.append $ '<th>', text: key
 
         thead.append headerRow
 

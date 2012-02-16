@@ -26,3 +26,19 @@
       collection: oldies
 
     table.render().$el.appendTo '#main'
+
+    sumTable = oldies.composed ->
+      result = {}
+
+      if first = oldies.first()
+        for key of first.attributes
+          result["sum\#{key}"] = @reduce((sum, item) ->
+            sum + item.get(key)
+          , 0)
+
+      return [result] # TODO Auto-wrap non-array results?
+
+    table = new Functio.Views.Table
+      collection: sumTable
+
+    table.render().$el.appendTo '#main'
