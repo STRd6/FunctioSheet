@@ -6,12 +6,23 @@
 
   :coffeescript
     collection = new Functio.Models.Table [
-      {name: "Tim", age: 5}
-      {name: "Ida", age: 26}
-      {name: "Rob", age: 55}
+      {name: "Tim", coolness: 21, age: 5}
+      {name: "Ida", coolness: 32, age: 26}
+      {name: "Rob", coolness: 19, age: 55}
     ]
 
     table = new Functio.Views.Table
       collection: collection
+
+    table.render().$el.appendTo '#main'
+
+    oldies = collection.composed ->
+      @filter (item) ->
+        item.get('age') > 10
+
+    oldies.title = "Oldies"
+
+    table = new Functio.Views.Table
+      collection: oldies
 
     table.render().$el.appendTo '#main'
